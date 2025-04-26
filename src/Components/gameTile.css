@@ -1,0 +1,236 @@
+/* Ensure body styles are commented out or removed if not needed globally */
+/* body { ... } */
+
+.game-cartridge {
+    width: 280px;
+    height: 320px; /* Fixed height is crucial */
+    background-color: #a0a0a0;
+    border-radius: 10px 0 5px 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.2);
+    position: relative;
+    display: flex;           /* Use Flexbox */
+    flex-direction: column; /* Arrange children vertically */
+    overflow: hidden;       /* Prevent children spilling out */
+    margin-top: 20px;
+}
+
+/* Cutout element (Keep as is) */
+.cartridge-top-cutout {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    /* Use a background that matches the page behind the cartridge */
+    background-color: #f0f0f0; /* Or whatever your page background is */
+    transform: skewX(-25deg) translateX(10px);
+    z-index: 1;
+}
+
+.cartridge-top {
+    height: 40px;        /* Define its specific height */
+    flex-shrink: 0;      /* PREVENT this from shrinking */
+    background-color: #888888;
+    border-bottom: 1px solid #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 5px 0 5px;
+    border-radius: 10px 0 0 0;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+    position: relative; /* Keep for z-index */
+    z-index: 2;         /* Keep above cutout */
+}
+
+.brand-text { /* Keep as is */
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-shadow: 0.5px 0.5px 0 #ccc;
+}
+
+.label-area {
+    flex-grow: 1;      /* Allow this to take available space */
+    flex-shrink: 1;    /* Allow shrinking if necessary (default) */
+    flex-basis: 0;     /* Helps flex-grow calculate correctly */
+    min-height: 0;     /* CRUCIAL for flex items that grow in column */
+    padding: 15px 15px 5px 15px; /* Restore padding around sticker */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    overflow: hidden; /* Prevent inner content from breaking layout */
+    /* background-color: lightblue; /* For debugging */
+}
+
+.label-sticker {
+    width: 100%;
+    height: 100%;
+    background-color: #d8d8d8;
+    border: 1px solid #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    padding: 10px; /* Padding inside sticker */
+    box-sizing: border-box;
+    overflow: hidden; /* Contain the image */
+    /* background-color: lightcoral; /* For debugging */
+}
+
+.sticker-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: lightgreen; /* For debugging */
+}
+
+.main-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This will fill the width, but may crop top/bottom */
+}
+
+/* Bottom notch element (Keep as is) */
+.cartridge-bottom-notch {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 10px solid #a0a0a0; /* Match cartridge */
+    filter: drop-shadow(0 4px 2px rgba(0,0,0,0.3));
+    z-index: 2; /* Above controls visually if overlapping */
+}
+
+.controls-notch-area {
+    /* No absolute positioning needed */
+    width: 100%;         /* Take full width */
+    flex-shrink: 0;      /* PREVENT this from shrinking */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Adjust padding slightly if needed for vertical centering */
+    padding: 10px 10px 15px 10px;
+    background-color: #a0a0a0; /* Match cartridge */
+    border-radius: 0 0 5px 5px; /* Match bottom corners */
+    z-index: 3;          /* Ensure controls are clickable */
+    gap: 10px;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Styles for controls inside the notch area (Keep as is) */
+#cart-select-notch {
+    padding: 5px 8px;
+    border: 1px solid #888;
+    border-radius: 4px;
+    background-color: #fff;
+    min-width: 100px;
+}
+
+#cart-button-notch {
+    padding: 6px 15px;
+    border: 1px solid #777;
+    border-radius: 4px;
+    background-color: #c0c0c0;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+#cart-button-notch:hover {
+    background-color: #b0b0b0;
+}
+
+#cart-button-notch:active {
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+    background-color: #a8a8a8;
+}
+
+/* Styles for screens smaller than 600px (adjust breakpoint as needed) */
+@media (max-width: 600px) {
+    .game-cartridge {
+        /* Use slightly more width on small screens */
+        width: 200px;
+        height: 250px;
+        
+        margin-top: 15px; /* Slightly reduce top margin */
+        /* max-width could potentially be slightly larger if needed, e.g. 300px */
+        justify-content: center;
+    }
+
+    .cartridge-top {
+        /* Optionally make the top bar slightly shorter */
+        height: 35px;
+        min-height: 35px; /* Match the height */
+        margin: 4px 4px 0 4px; /* Adjust margins if needed */
+    }
+
+    .brand-text {
+        /* Reduce font size */
+        font-size: 12px;
+        /* Or use rem: font-size: 0.75rem; */
+    }
+
+    .label-area {
+        /* Reduce padding */
+        padding: 10px 10px 5px 10px;
+    }
+
+    .label-sticker {
+        /* Reduce internal padding */
+        padding: 8px;
+    }
+
+    .controls-notch-area {
+        /* Reduce padding and gap */
+        padding: 8px 8px 12px 8px;
+        gap: 8px;
+
+        /* OPTIONAL: Stack controls vertically on very small screens */
+        /* flex-direction: column; */
+        /* align-items: stretch; */ /* Make items full width if stacked */
+    }
+
+    #cart-select-notch,
+    #cart-button-notch {
+        /* Adjust control padding and font size */
+        padding: 6px 10px; /* Slightly adjust padding */
+        font-size: 12px; /* Smaller font */
+         /* Allow select to shrink more */
+        min-width: auto;
+
+        /* OPTIONAL: If stacking controls */
+        /* width: 100%; */ /* Make button/select full width */
+        /* box-sizing: border-box; */
+    }
+
+     /* OPTIONAL: Add space between stacked controls */
+    /* #cart-select-notch {
+        margin-bottom: 5px;
+    } */
+
+    /* Adjust cutout/notch visually if needed (these values are approximate) */
+    .cartridge-top-cutout {
+        width: 30px;
+        height: 30px;
+        transform: skewX(-25deg) translateX(8px);
+    }
+     .cartridge-bottom-notch {
+         border-left-width: 15px;
+         border-right-width: 15px;
+         border-top-width: 8px;
+         bottom: -8px; /* Match border-top-width */
+     }
+}
+
