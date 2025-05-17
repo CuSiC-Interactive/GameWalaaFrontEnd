@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* src/components/HomePage.css */
+
+/* General styles for the container */
+.home-page-container {
+    color: #ffff;
+    font-family: 'Press Start 2P', monospace;
+    text-align: center;
+    padding-top: 10px; /* Reduce top padding */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+  
+  /* Hero Section (Centered Welcome) */
+  .hero-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh; /* Slightly reduce min-height */
+    margin-bottom: 20px; /* Reduce bottom margin */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  }
+  
+  .welcome-text {
+    font-size: 2.5em;
+    margin-bottom: 5px; /* Reduce bottom margin */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 1);
+    color: #f44336;
+  }
+  
+  .tagline {
+    font-size: 1.2em;
+    opacity: 1;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    margin-bottom: 10px; /* Add a little bottom margin for separation */
+  }
+  
+  /* Featured Games Section */
+  .featured-games-section {
+    margin-bottom: 20px; /* Reduce bottom margin */
+    padding-top: 15px; /* Add some top padding within the section if needed */
+  }
+  
+  .featured-games-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px; /* Reduce bottom margin */
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.9);
+    color: #f44336;
+  }
+  
+  .featured-games-section p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px; /* Reduce bottom margin */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    color: #ddd;
+  }
+  
+  .game-list {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Slightly reduce gap */
+    margin-top: 15px; /* Reduce top margin */
+  }
+  
+  .game-item {
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 12px 18px; /* Slightly reduce padding */
+    border-radius: 8px;
+    border: 1px solid #555;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  }
+  
+  .game-title {
+    font-size: 1em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+    color: #eee;
+  }
+  
+  /* About GameWalaa Section */
+  .about-section {
+    margin-bottom: 20px; /* Reduce bottom margin */
+    padding-top: 15px; /* Add some top padding within the section if needed */
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+  }
+  
+  .about-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px; /* Reduce bottom margin */
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.9);
+    color: #00bcd4;
+  }
+  
+  .about-section p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 15px; /* Reduce bottom margin */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    color: #eee;
+  }
+  
+  /* Media Query for Mobile Screens (max-width: 768px) */
+  @media (max-width: 768px) {
+    .home-page-container {
+      padding-top: 5px; /* Further reduce top padding on mobile */
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 15px;
+      font-size: small;
+    }
+  
+    .hero-section {
+      min-height: auto;
+      padding: 20px 10px;
+      margin-bottom: 15px;
+    }
+  
+    .welcome-text {
+      font-size: 2em;
+      margin-bottom: 3px;
+    }
+  
+    .tagline {
+      font-size: 1em;
+      margin-bottom: 5px;
+    }
+  
+    .featured-games-section {
+      margin-bottom: 15px;
+      padding-top: 10px;
+    }
+  
+    .featured-games-section h2 {
+      font-size: 1.5em;
+      margin-bottom: 8px;
+    }
+  
+    .featured-games-section p {
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+  
+    .game-list {
+      gap: 8px;
+      margin-top: 10px;
+    }
+  
+    .game-item {
+      padding: 8px 12px;
+    }
+  
+    .game-title {
+      font-size: 0.9em;
+    }
+  
+    .about-section {
+      margin-bottom: 15px;
+      padding-top: 10px;
+    }
+  
+    .about-section h2 {
+      font-size: 1.5em;
+      margin-bottom: 8px;
+    }
+  
+    .about-section p {
+      font-size: 0.9em;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+  }
+  
+  /* Very small screens (e.g., smaller phones) */
+  @media (max-width: 480px) {
+    .welcome-text {
+      font-size: 1.6em;
+    }
+  
+    .tagline {
+      font-size: 0.8em;
+    }
+  }
