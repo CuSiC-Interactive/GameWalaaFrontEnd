@@ -5,7 +5,9 @@ import { image } from "framer-motion/m";
 export type GameTileProps = {
   gameName: string;
   gameProfile: string;
-  pricesList: any;
+  pricesList: {
+    value: string;
+  }[];
 };
 
 const GameTile = ({ gameName, gameProfile, pricesList }: GameTileProps) => {
@@ -29,10 +31,13 @@ const GameTile = ({ gameName, gameProfile, pricesList }: GameTileProps) => {
       <div className="cartridge-bottom-notch"></div>
       <div className="controls-notch-area">
         <select id="cart-select-notch">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
+          {pricesList.map((x: { value: string }, ind: number) => (
+            <option key={`price-option-${x.value}-${ind}`} value={x.value}>
+              {x.value}
+            </option>
+          ))}
         </select>
+
         <button id="cart-button-notch">Play</button>
       </div>
     </div>

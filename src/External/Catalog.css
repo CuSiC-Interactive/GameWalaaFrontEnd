@@ -1,0 +1,22 @@
+.catalog-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+/* .game-tile {
+    flex: 0 0 33.3333%
+} */
+
+@media (max-width: 400px) {
+    .catalog-container {
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .game-tile {
+        justify-content: space-around;
+        align-items: center;
+    }
+}

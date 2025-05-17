@@ -20,13 +20,19 @@ const Navbar = () => {
         <div className={`nav-elements ${showNav && "active"}`}>
           <ul>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink onClick={toggleNav} to="/">
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/Catalog">Games Catalog</NavLink>
+              <NavLink onClick={toggleNav} to="/Catalog">
+                Games Catalog
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/About">About</NavLink>
+              <NavLink onClick={toggleNav} to="/About">
+                About
+              </NavLink>
             </li>
           </ul>
         </div>

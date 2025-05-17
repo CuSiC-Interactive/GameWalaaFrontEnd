@@ -23,6 +23,7 @@ body {
   background-color: #fef7e5;
   position: relative;
   border-radius: 20px;
+  z-index: 1000;
 }
 
 .menu-icon {
@@ -76,26 +77,35 @@ body {
 
   .nav-elements {
     position: absolute;
-    right: 0;
-    top: 60px;
+    left: 0; /* Position it from the left */
+    right: 0; /* Extend to the right, or use width: 100% */
+    top: 60px; /* Position it just below the 60px high navbar */
     background-color: #fef7e5;
-    width: 0px;
-    height: calc(100vh - 70vh);
+    /* height: calc(100vh - 70vh); */ /* Remove this or set it to 0 for the closed state */
+    height: 0; /* Start with height 0 */
+    width: 100%; /* Make it span the full width */
     transition: all 0.3s ease-in;
-    overflow: hidden;
+    overflow: hidden; /* Hide content outside the height */
+    z-index: 500; /* Add a z-index to ensure it's above content but maybe below the main navbar if navbar is fixed */
   }
 
   .nav-elements.active {
-    width: 270px;
+    height: calc(100vh - 70vh); /* Set the open height (e.g., fill remaining viewport height) */
+    overflow-y: auto; /* Add scroll if content exceeds height */
+    margin-top: 5px;
+    border-radius: 20px;
   }
 
   .nav-elements ul {
     display: flex;
     flex-direction: column;
+    padding: 20px; /* Add some padding inside the menu */
+    align-items: center;
   }
 
   .nav-elements ul li {
     margin-right: unset;
-    margin-top: 22px;
+    margin-top: 15px; /* Adjust spacing */
+    margin-bottom: 15px; /* Add some bottom margin */
   }
 }
