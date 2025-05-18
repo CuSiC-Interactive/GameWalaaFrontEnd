@@ -1,0 +1,69 @@
+.admin-wrapper {
+    display: flex;
+    height: 88vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    border-radius: 12px;
+  }
+  
+  .admin-main {
+    flex: 1;
+    padding: 32px;
+    overflow-y: auto;
+  }
+  
+  .card {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .form-label {
+    display: flex;
+    margin-bottom: 4px;
+    font-weight: 500;
+    margin-left: 35px;
+  }
+  
+  .form-input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: #f9f9f9;
+  }
+  
+  .form-actions {
+    margin-top: 16px;
+  }
+  
+  .save-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .save-btn:hover {
+    background-color: #45A049;
+  }
