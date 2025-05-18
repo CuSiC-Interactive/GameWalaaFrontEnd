@@ -1,6 +1,6 @@
 import "./gameTile.css";
-import gameImage from "../Images/game.jpg";
-import { image } from "framer-motion/m";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 export type GameTileProps = {
   gameName: string;
@@ -8,9 +8,16 @@ export type GameTileProps = {
   pricesList: {
     value: string;
   }[];
+  infoMessage: string;
 };
 
-const GameTile = ({ gameName, gameProfile, pricesList }: GameTileProps) => {
+const GameTile = ({
+  gameName,
+  gameProfile,
+  pricesList,
+  infoMessage,
+}: GameTileProps) => {
+  console.log(pricesList);
   return (
     <div className="game-cartridge">
       <div className="cartridge-top-cutout"></div>
@@ -29,8 +36,12 @@ const GameTile = ({ gameName, gameProfile, pricesList }: GameTileProps) => {
         </div>
       </div>
       <div className="cartridge-bottom-notch"></div>
+      <div className="info-text">
+        <FontAwesomeIcon className="info-icon" icon={faCircleInfo} />
+        <span>{infoMessage}</span>
+      </div>
       <div className="controls-notch-area">
-        <select id="cart-select-notch">
+        <select id="cart-select-notch" aria-placeholder="Select">
           {pricesList.map((x: { value: string }, ind: number) => (
             <option key={`price-option-${x.value}-${ind}`} value={x.value}>
               {x.value}

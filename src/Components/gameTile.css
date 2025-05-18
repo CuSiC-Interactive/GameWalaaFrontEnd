@@ -3,7 +3,7 @@
 
 .game-cartridge {
     width: 280px;
-    height: 320px; /* Fixed height is crucial */
+    height: 335px; /* Fixed height is crucial */
     background-color: #a0a0a0;
     border-radius: 10px 0 5px 5px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.2);
@@ -157,6 +157,16 @@
     background-color: #a8a8a8;
 }
 
+.info-text{
+  font-size: 11px;
+  opacity: 0.5;
+  text-align: start;
+  margin-left: 15px;
+}
+.info-icon{
+    margin-right: 2px;
+}
+
 /* Styles for screens smaller than 600px (adjust breakpoint as needed) */
 @media (max-width: 400px) {
     .game-cartridge {
@@ -235,6 +245,9 @@
     .cart-select-notch{        
         font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
         font-weight: 200;
+    }
+    .info-text{
+        font-size: 9px;
     }
 }
 
