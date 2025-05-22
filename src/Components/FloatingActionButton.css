@@ -1,0 +1,87 @@
+.fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    /*--size and shape*/
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+
+    /*--Appearence*/
+    background-color: #007bff;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);  
+    
+    /*--content alignment*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 24px;
+
+    /* --- Interactivity --- */
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s; 
+
+    /* --- Layering --- */
+    z-index: 999;
+
+    /* --- Accessibility --- */
+    outline: none;
+}
+
+.fab:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transform: translate(-2px);
+}
+
+/* Styles for active (clicked) state */
+.fab:active {
+    background-color: #004085; /* Even darker blue when clicked */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Smaller, more intense shadow to simulate "pressing" */
+    transform: translateY(0); /* Button moves back to original position */
+}
+
+.fab-default-icon {
+    font-size: 28px;
+}
+
+/* --- Notification Badge Styling --- */
+.fab-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 3px;
+    border-radius: 50%;
+    min-width: 15px;
+    text-align: center;
+    line-height: 1;
+    border: 2px solid white;
+}
+
+
+@media (max-width: 400px) {
+    .fab {
+        width: 50px; /* Slightly smaller button size */
+        height: 50px;
+        font-size: 20px; /* Smaller icon/text */
+        bottom: 15px; /* Slightly closer to the bottom */
+        right: 15px; /* Slightly closer to the right */
+    }
+    .fab-default-icon {
+        font-size: 24px; /* Adjust default icon size */
+    }
+    .fab-badge {
+        font-size: 10px; /* Smaller badge font */
+        padding: 2px 2px; /* Smaller badge padding */
+        top: -3px; /* Adjust position for smaller button */
+        right: -3px; /* Adjust position for smaller button */
+    }
+}
