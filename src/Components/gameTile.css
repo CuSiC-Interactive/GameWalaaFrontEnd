@@ -168,7 +168,7 @@
 }
 
 /* Styles for screens smaller than 600px (adjust breakpoint as needed) */
-@media (max-width: 400px) {
+@media (max-width: 650px) {
     .game-cartridge {
         /* Use slightly more width on small screens */
         width: 220px;

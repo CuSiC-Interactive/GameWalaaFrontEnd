@@ -8,9 +8,9 @@
     flex: 0 0 33.3333%
 } */
 
-@media (max-width: 400px) {
+/* @media (max-width: 650px) {
     .catalog-container {
-        flex-direction: column;
+        flex-flow: row wrap;
         justify-content: space-around;
         align-items: center;
     }
@@ -19,4 +19,4 @@
         justify-content: space-around;
         align-items: center;
     }
-}
+} */

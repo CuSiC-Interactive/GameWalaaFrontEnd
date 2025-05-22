@@ -1,0 +1,204 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #f0f0f0;
+    background-image: url("../Images/background22.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; 
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    height: 80vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-content h2 {
+    /* OPTION A: Dark Purple/Magenta (from your website background) */
+    color: #e0380e; /* A deep, rich indigo/purple */
+    /* OR OPTION B: Arcade Red */
+    /* color: #CC0000; */ /* A classic, strong red */
+    /* OR OPTION C: Pure Black (for maximum punch) */
+    /* color: #000000; */
+
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 30px; /* Make it larger for more impact */
+    font-weight: 900; /* Use extra bold or bolder if your font supports it */
+    text-transform: uppercase; /* Optional: All caps can enhance retro feel */
+
+    /* --- ENHANCED TEXT SHADOW (CRUCIAL FOR VISIBILITY ON BUSY BACKGROUNDS) --- */
+    text-shadow:
+        /* Pixel-like outline (thicker, more defined) */
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        2px 2px 0 #000,
+        
+        /* Optional: A slightly larger, softer shadow for overall lift */
+        4px 4px 6px rgba(0, 0, 0, 0.6);
+
+    /* Optional: If you use a custom pixel-art font */
+    /* font-family: 'Press Start 2P', cursive; */
+    /* If using 'Press Start 2P', reduce font-size to around 20-24px as it's a large font */
+}
+
+.code-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.code-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.game-title-modal {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.code-value-modal-wrapper {
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #e9ecef;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+}
+
+.konami-code-modal {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: bold;
+    color: #28a745;
+    letter-spacing: 1px;
+    user-select: all;
+    word-break: break-all;
+}
+
+.copy-button-modal {
+    padding: 6px 12px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+}
+
+.copy-button-modal:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.copy-button-modal.copied {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.code-instructions-modal {
+    font-size: 12px;
+    color: #6c757d; /* Muted grey color */
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-close-button:hover {
+    color: #555;
+}
+
+/* 12. Responsive Adjustments for Smaller Screens */
+@media (max-width: 400px) {
+    .modal-content {
+        width: 70%;
+        max-width: 90%;
+        max-height: 70vh;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .modal-content h2 {
+        font-size: 20px; /* Smaller title font */
+    }
+
+    .codes-list {
+        gap: 15px; /* Reduce space between code items */
+    }
+
+    .code-item {
+        padding: 10px; /* Reduce item padding */
+    }
+
+    .game-title-modal {
+        font-size: 14px; /* Smaller game title font */
+    }
+
+    .code-value-wrapper-modal {
+        flex-direction: row; /* Stack code and button vertically on very small screens */
+        gap: 5px;              /* Reduce gap when stacked */
+        padding: 8px 10px;
+    }
+
+    .konami-code-modal {
+        font-size: 18px; /* Smaller code font */
+    }
+
+    .copy-button-modal {
+        padding: 5px 10px; /* Smaller button padding */
+        font-size: 12px;   /* Smaller button font */
+        width: 100%;       /* Make button full width when stacked */
+        box-sizing: border-box; /* Include padding in width */
+    }
+
+    .code-instructions-modal {
+        font-size: 11px; /* Smaller instructions font */
+    }
+
+    .modal-close-button {
+        font-size: 24px; /* Smaller close button */
+        top: 10px;
+        right: 10px;
+    }
+}

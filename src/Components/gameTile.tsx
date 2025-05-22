@@ -1,6 +1,7 @@
 import "./gameTile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { useForm } from "react-hook-form";
 
 export type GameTileProps = {
   gameName: string;
@@ -9,6 +10,8 @@ export type GameTileProps = {
     value: string;
   }[];
   infoMessage: string;
+  gameId: number;
+  handleGamePayment: (gameData: any) => void;
 };
 
 const GameTile = ({
@@ -16,8 +19,11 @@ const GameTile = ({
   gameProfile,
   pricesList,
   infoMessage,
+  gameId,
+  handleGamePayment,
 }: GameTileProps) => {
-  console.log(pricesList);
+  const { register, handleSubmit } = useForm();
+
   return (
     <div className="game-cartridge">
       <div className="cartridge-top-cutout"></div>
@@ -40,8 +46,16 @@ const GameTile = ({
         <FontAwesomeIcon className="info-icon" icon={faCircleInfo} />
         <span>{infoMessage}</span>
       </div>
-      <div className="controls-notch-area">
-        <select id="cart-select-notch" aria-placeholder="Select">
+      <form
+        className="controls-notch-area"
+        onSubmit={handleSubmit(handleGamePayment)}
+      >
+        <input type="hidden" value={gameName} {...register("gameName")} />
+        <input type="hidden" value={gameId} {...register("gameId")} />
+        <select
+          id="cart-select-notch"
+          {...register("selectedPrice", { required: true })}
+        >
           {pricesList.map((x: { value: string }, ind: number) => (
             <option key={`price-option-${x.value}-${ind}`} value={x.value}>
               {x.value}
@@ -49,8 +63,10 @@ const GameTile = ({
           ))}
         </select>
 
-        <button id="cart-button-notch">Play</button>
-      </div>
+        <button id="cart-button-notch" type="submit">
+          Play
+        </button>
+      </form>
     </div>
   );
 };
