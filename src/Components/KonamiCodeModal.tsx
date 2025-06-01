@@ -31,7 +31,7 @@ const KonamiCodeModal = ({ codes, isOpen, onClose }: KonamiCodeModalProps) => {
         }, 2000);
       })
       .catch((err) => {
-        console.log("Failed copying", err);
+        console.log("Failed copying the code", err);
       });
   };
 
