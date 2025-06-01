@@ -1,4 +1,3 @@
-import { icon } from "@fortawesome/fontawesome-svg-core";
 import "./FloatingActionButton.css";
 import React from "react";
 

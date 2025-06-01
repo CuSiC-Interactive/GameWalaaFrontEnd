@@ -16,6 +16,12 @@ const Catalog = () => {
     { gameName: "Countra", gameId: "1", konamiCode: "asdfkh123" },
   ]);
 
+  useEffect(() => {
+    setKonamiCodes([
+      { gameName: "Countra", gameId: "1", konamiCode: "asdfkh123" },
+    ]);
+  }, []);
+
   // const Games = [
   //   {
   //     Name: "Super Mario Bros",
