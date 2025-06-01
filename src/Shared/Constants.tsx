@@ -1,5 +1,5 @@
 const Constants = {
-  baseUrl: "http://localhost:8080",
+  baseUrl: "https://arcadewala.fun",
   games: "api/v1/games",
 };
 

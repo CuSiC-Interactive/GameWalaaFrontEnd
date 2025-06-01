@@ -9,8 +9,7 @@ const AdminDashboard = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data: any) => {
-    // data.preventDefault();
-    console.log(data);
+    // data.preventDefault();S
   };
 
   useEffect(() => {
