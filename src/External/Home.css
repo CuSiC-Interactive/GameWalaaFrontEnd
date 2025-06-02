@@ -119,6 +119,7 @@
       min-height: auto;
       padding: 20px 10px;
       margin-bottom: 15px;
+      margin-top: 20px;
     }
   
     .welcome-text {
@@ -134,6 +135,7 @@
     .featured-games-section {
       margin-bottom: 15px;
       padding-top: 10px;
+      margin-top: 60px;
     }
   
     .featured-games-section h2 {
@@ -148,7 +150,7 @@
   
     .game-list {
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 20px;
     }
   
     .game-item {
