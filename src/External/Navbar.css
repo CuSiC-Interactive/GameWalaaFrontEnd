@@ -63,6 +63,10 @@ body {
   background-color: #574c4c;
 }
 
+.title {
+  max-width: 105px;
+}
+
 @media (max-width: 768px) {
   .nav-elements ul li:not(:last-child) {
     margin-right: 30px;
@@ -75,6 +79,7 @@ body {
     cursor: pointer;
   }
 
+  
   .nav-elements {
     position: absolute;
     left: 0; /* Position it from the left */
@@ -90,8 +95,12 @@ body {
   }
 
   .nav-elements.active {
-    height: calc(100vh - 70vh); /* Set the open height (e.g., fill remaining viewport height) */
-    overflow-y: auto; /* Add scroll if content exceeds height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Vertical centering */
+    height: calc(100vh - 70vh);
+    overflow-y: auto;
     margin-top: 5px;
     border-radius: 20px;
   }
@@ -104,8 +113,7 @@ body {
   }
 
   .nav-elements ul li {
-    margin-right: unset;
-    margin-top: 15px; /* Adjust spacing */
-    margin-bottom: 15px; /* Add some bottom margin */
+    margin: 15px 0;
+    text-align: center;
   }
 }
