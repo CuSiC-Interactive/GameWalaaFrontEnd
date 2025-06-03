@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="container">
-        <div className="title">GameWalaa</div>
+        <img src="./public/Images/Arcade-wala.png" className="title"></img>
         <div className="menu-icon" onClick={toggleNav}>
           <i className="fas fa-bars"></i>
         </div>
