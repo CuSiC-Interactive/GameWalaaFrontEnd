@@ -4,3 +4,13 @@
   padding: 2rem;
   text-align: center;
 }
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex-grow: 1;
+}

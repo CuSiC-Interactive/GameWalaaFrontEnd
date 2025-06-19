@@ -6,7 +6,7 @@ const Home = () => {
       <div className="home-page-container">
         {/* Centered Welcome Section */}
         <section className="hero-section">
-          <h1 className="welcome-text">Welcome to GameWalaa!</h1>
+          <h1 className="welcome-text">Welcome to ArcadeWalaa!</h1>
           <p className="tagline">Your Retro Arcade Adventure Starts Here.</p>
         </section>
 

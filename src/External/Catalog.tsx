@@ -6,8 +6,7 @@ import "./Catalog.css";
 import axios from "axios";
 import Constants from "../Shared/Constants";
 import { gamesModel } from "../Shared/Models";
-import loadBoltScript from "../Utils/loadBoltScript";
-import { generatePayUHash } from "../Utils/generatePayUHash";
+import { loadRazorpayScript } from "../Utils/loadRazorpayScript";
 
 const Catalog = () => {
   const [Games, setGames] = useState<gamesModel[]>([]);
@@ -111,61 +110,37 @@ const Catalog = () => {
   };
 
   const handleGamePayment = async (gameData: any) => {
-    const selectedPrice = gameData.selectedPrice;
-    const match = selectedPrice.match(/₹(\d+)/);
-    const price = match ? parseInt(match[1]) : null;
-
-    // load payu sdk
-    const boltLoaded = await loadBoltScript();
-    if (!boltLoaded) {
-      alert("PayU SDK failed to load.");
+    const isLoaded = await loadRazorpayScript();
+    if (!isLoaded) {
+      alert("Razorpay SDK failed to load.");
       return;
     }
 
-    const tnxid = `txn_${Date.now()}`;
-    const amount = price?.toString();
-    const productInfo = gameData.gameName;
-    const firstName = "TestUser";
-    const email = "test@gmail.com";
-
-    const hash = generatePayUHash(
-      "gtKFFx",
-      tnxid,
-      amount || "0",
-      productInfo,
-      firstName,
-      email,
-      "eCwWELxi"
-    );
-
-    const payuPayload = {
-      key: "gtKFFx",
-      tnxid,
-      amount,
-      firstName,
-      email,
-      phone: "9999999999",
-      productInfo,
-      surl: "http://localhost:3000/success", // success route
-      furl: "http://localhost:3000/failure", // failure route
-      hash,
+    // Fake order details for frontend testing only
+    const options: any = {
+      key: "rzp_test_1DP5mmOlF5G5ag", // Replace with your Razorpay test key
+      amount: 50000, // Amount in paisa (₹500.00)
+      currency: "INR",
+      name: "Retro Arcade",
+      description: `Payment for ${gameData.gameName}`,
+      image: "https://yourdomain.com/logo.png", // optional
+      handler: function (response: any) {
+        alert("Payment Success! Payment ID: " + response.razorpay_payment_id);
+        console.log(response);
+        // You can send this ID to backend for verification
+      },
+      prefill: {
+        name: "Anshul Sharma",
+        email: "test@example.com",
+        contact: "9999999999",
+      },
+      theme: {
+        color: "#3399cc",
+      },
     };
 
-    window.bolt.launch(payuPayload, {
-      responseHandler: function (response: any) {
-        console.log("Payment Response:", response);
-        if (response.response.txnStatus === "SUCCESS") {
-          // Optionally update backend
-          alert("Payment Successful!");
-        } else {
-          alert("Payment Failed.");
-        }
-      },
-      catchException: function (e: any) {
-        console.error(e);
-        alert("Payment Exception");
-      },
-    });
+    const paymentObject = new (window as any).Razorpay(options);
+    paymentObject.open();
   };
 
   const handleOpenModal = () => {

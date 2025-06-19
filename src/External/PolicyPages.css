@@ -1,0 +1,47 @@
+.policy-page {
+  margin-top: 3.5rem; /* reduced from 5rem */
+  padding: 2rem 1rem 2rem;
+  font-family: 'Press Start 2P', monospace;
+  background-color: #000;
+  color: #d6b4f7;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+
+.policy-page h1 {
+  font-size: 1.25rem;
+  color: #ff4c4c;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.policy-page p,
+.policy-page li {
+  font-size: 0.65rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.policy-page ul {
+  padding-left: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .policy-page {
+    margin-top: 3rem; /* reduced top margin for mobile */
+    padding: 1rem 1rem 2rem;
+  }
+
+  .policy-page h1 {
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem; /* adjust bottom spacing */
+  }
+  .policy-page p,
+  .policy-page li {
+    font-size: 0.60rem;
+  }
+}
