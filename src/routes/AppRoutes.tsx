@@ -3,7 +3,7 @@ import Home from "../External/Home";
 import Catalog from "../External/Catalog";
 import About from "../External/About";
 import TermsAndConditions from "../External/TermsAndConditons";
-import RefundPolicy from "../External/RefundAndCancellation";
+import RefundPolicy from "../External/PrivacyPolicy";
 
 const AppRoutes = () => {
   const router = Router;
@@ -15,7 +15,7 @@ const AppRoutes = () => {
         <Route path="/Catalog" element={<Catalog />} />
         <Route path="/About" element={<About />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-        <Route path="/refund-policy" element={<RefundPolicy />} />
+        <Route path="/privacy-policy" element={<RefundPolicy />} />
       </Routes>
     </>
   );

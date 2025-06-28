@@ -1,13 +1,18 @@
 .policy-page {
-  margin-top: 3.5rem; /* reduced from 5rem */
-  padding: 2rem 1rem 2rem;
+  height: 80vh; /* adjust as needed */
+  overflow-y: auto;
+  padding: 1.5rem 1rem 2rem;
+  margin-top: 4.5rem;
   font-family: 'Press Start 2P', monospace;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.85); /* retro-styled overlay */
   color: #d6b4f7;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  border: 2px solid #9b59b6;
+  border-radius: 8px;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 
@@ -29,10 +34,16 @@
   padding-left: 1.5rem;
 }
 
+/* Hide scrollbar for Chrome, Safari */
+.policy-page::-webkit-scrollbar {
+  display: none;
+}
+
 @media (max-width: 640px) {
   .policy-page {
-    margin-top: 3rem; /* reduced top margin for mobile */
-    padding: 1rem 1rem 2rem;
+    height: 75vh;
+    padding: 1rem;
+    margin-top: 4rem;
   }
 
   .policy-page h1 {
@@ -45,3 +56,5 @@
     font-size: 0.60rem;
   }
 }
+
+
