@@ -127,10 +127,10 @@ const RefundAndCancellation = () => {
           for direct marketing purposes, you may change your mind at any time by
           writing to or emailing us at
           <a
-            href="mailto:consultmi2023@gmail.com"
-            className="text-blue-600 hover:underline ml-1 ms-1"
+            href="mailto:sidd@gamewalaa.in"
+            className="text-blue-600 hover:underline ml-1 ms-2"
           >
-            consultmi2023@gmail.com
+            sidd@gamewalaa.in
           </a>
         </li>
       </ul>
