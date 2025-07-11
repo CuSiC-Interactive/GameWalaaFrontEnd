@@ -1,4 +1,3 @@
-import React from "react";
 import "./PolicyPages.css";
 
 const TermsAndConditions = () => {
