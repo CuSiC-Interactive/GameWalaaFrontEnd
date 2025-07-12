@@ -93,7 +93,8 @@
     font-size: 1.8em;
     margin-bottom: 10px; /* Reduce bottom margin */
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.9);
-    color: #00bcd4;
+    /* color: #00bcd4; */
+    color: #ff4c4c;
   }
   
   .about-section p {

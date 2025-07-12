@@ -19,7 +19,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="container">
         <img
-          src="./public/Images/Arcade-wala.png"
+          src="./Images/Arcade-wala.png"
           className="title"
           onClick={navigateHome}
         ></img>
