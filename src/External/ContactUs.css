@@ -1,0 +1,134 @@
+.contact-section {
+  padding: 4rem 1rem;
+  background-color: transparent;
+  color: #fff;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: auto;
+    padding: 0 1rem;
+    align-items: center;
+}
+
+.sub-text {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #d1d5db; /* Slight gray tint */
+}
+
+.fade-in {
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+/* Optional Entrance Animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.contact-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideIn 0.8s ease-out;
+}
+
+.contact-text h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  color: #ff4c4c;
+}
+
+.contact-text p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.contact-form {
+  flex: 1;
+  background: white;
+  color: black;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 90%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  width: 100%;
+  background-color: #da00da; /* Solid purple-pink from image */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #ff4cdb; /* Brighter pink shade on hover */
+  box-shadow: 0 0 10px #ff4cdb, 0 0 20px #ff4cdb;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 0 0;
+    margin-top: 20px;
+  }
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .contact-text h2 {
+    font-size: 25px;
+    display: flex;
+    width: 110%;
+  }
+
+  .contact-text p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: white;
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+  .contact-form {
+    width: 80%;
+    max-width: 400px;
+    margin-right: 50%;
+    margin-left: 50%;
+    font-size: small;
+  }
+
+  .contact-form button {
+    width: 100%;
+  }
+}

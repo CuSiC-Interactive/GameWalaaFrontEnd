@@ -33,6 +33,11 @@ const Navbar = () => {
                 Games Catalog
               </NavLink>
             </li>
+            <li>
+              <NavLink onClick={toggleNav} to="/contact-us">
+                Contact Us
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

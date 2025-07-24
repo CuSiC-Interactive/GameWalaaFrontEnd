@@ -51,6 +51,15 @@
     margin-top: 0;
     margin-bottom: 1.5rem; /* adjust bottom spacing */
   }
+
+  .policy-page h2 {
+    font-size: 0.9rem;
+  }
+
+  .policy-page h4 {
+    font-size: 0.8rem;
+  }
+
   .policy-page p,
   .policy-page li {
     font-size: 0.60rem;

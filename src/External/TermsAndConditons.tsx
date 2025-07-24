@@ -101,6 +101,7 @@ const TermsAndConditions = () => {
         content provided here and shall not be responsible for any claims and
         liability that may arise due to merchant’s non-adherence to it.
       </p>
+      <h4>There won’t be any refund.</h4>
     </div>
   );
 };
