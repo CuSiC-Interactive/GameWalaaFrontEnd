@@ -34,6 +34,10 @@
   padding-left: 1.5rem;
 }
 
+a {
+  color: #ff4c4c;
+}
+
 /* Hide scrollbar for Chrome, Safari */
 .policy-page::-webkit-scrollbar {
   display: none;
