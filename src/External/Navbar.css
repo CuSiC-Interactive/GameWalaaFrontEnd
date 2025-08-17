@@ -95,10 +95,11 @@ body {
   }
 
   .nav-elements.active {
-    display: flex;
+     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Vertical centering */
+    justify-content: center;
+    height: auto;
     height: calc(100vh - 85vh);
     overflow-y: auto;
     margin-top: 5px;
@@ -106,14 +107,24 @@ body {
   }
 
   .nav-elements ul {
-    display: flex;
-    flex-direction: column;
-    padding: 20px; /* Add some padding inside the menu */
+    display: block;
+    padding: 20px; 
     align-items: center;
+    width: 100%;        
   }
 
   .nav-elements ul li {
     margin: 15px 0;
-    text-align: center;
+    width: 100%;
+    list-style: none;
   }
+
+  .nav-elements ul li a {
+    display: block; 
+    text-align: center;  
+    padding: 5px 0;
+    color: #2f234f;
+    text-decoration: none;
+  }
+
 }

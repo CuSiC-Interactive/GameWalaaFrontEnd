@@ -3,14 +3,26 @@
 
 .footer {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* semi-transparent black */
+  background-color: rgba(0, 0, 0, 0.8); 
   padding: 1.5rem 0;
   margin-top: 2.5rem;
   text-align: center;
   font-family: 'Press Start 2P', monospace;
   font-size: 0.65rem;
-  color: #d6b4f7; /* neon purple */
+  color: #d6b4f7; 
   border-top: 1px solid #9b59b6;
+}
+
+.chaiTreat {
+  cursor: pointer;
+  margin: 0 1rem;
+  text-decoration: underline;
+  color: #d6b4f7;
+  transition: color 0.3s ease;
+}
+
+.chaiTreat span:hover{
+  color: #ffffff;
 }
 
 .footer a {

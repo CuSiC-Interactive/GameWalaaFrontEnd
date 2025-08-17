@@ -1,0 +1,14 @@
+/* OnlineGames.css */
+.gameWrap {
+  width: 100%;
+  max-width: 900px;      /* tweak as you like */
+  margin: 0 auto;
+}
+
+.gameFrame {
+  width: 100%;
+  height: clamp(420px, 70vw, 700px); /* enough vertical space for the buttons */
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+}
