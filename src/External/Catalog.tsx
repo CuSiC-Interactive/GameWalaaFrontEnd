@@ -9,19 +9,17 @@ import { gamesModel } from "../Shared/Models";
 import { loadRazorpayScript } from "../Utils/loadRazorpayScript";
 // import logo from ".../dist/cusic-logo.png";
 
+type KonamiCode = {
+  gameName: string;
+  gameId: string;
+  konamiCode: string;
+};
+
 const Catalog = () => {
   const [Games, setGames] = useState<gamesModel[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [konamiCodes, setKonamiCodes] = useState([
-    { gameName: "Countra", gameId: "1", konamiCode: "asdfkh123" },
-  ]);
+  const [konamiCodes, setKonamiCodes] = useState<KonamiCode[]>([]);
   const [paymentReponse, setPaymentReponse] = useState();
-
-  useEffect(() => {
-    setKonamiCodes([
-      { gameName: "Countra", gameId: "1", konamiCode: "asdfkh123" },
-    ]);
-  }, []);
 
   useEffect(() => {
     fetchGames();
@@ -54,56 +52,22 @@ const Catalog = () => {
   };
 
   const handleGamePayment = async (gameData: any) => {
-    // console.log(gameData);
-    const price = 1 * 100;
-    const timeInMins = gameData.selectedPrice.match(/(\d+)\s*mins/)[1];
+    const gamePrice = Number(gameData.selectedPrice.match(/₹\s*(\d+)/)[1]);
+    const timeInMins = Number(gameData.selectedPrice.match(/(\d+)\s*mins/)[1]);
+
     const isLoaded = await loadRazorpayScript();
     if (!isLoaded) {
       alert("Razorpay SDK failed to load.");
       return;
     }
 
+    const price = gamePrice * 100;
     const result = await axios.get(
       `${Constants.baseUrl}/${Constants.fetchOrder}/${price}`
     );
-    console.log(result);
+
     const order_id: number = result.data.details.id;
     const currency: string = result.data.details.currency;
-    // const data = {
-    //   orderCreationId: "order_R6QeTM4CRlY6O881",
-    //   razorpayPaymentId: "pay_R6QepYU4ehG0GM",
-    //   razorpayOrderId: "order_R6QeTM4CRlY6O881",
-    //   razorpaySignature:
-    //     "d09ac8a3f223d4dce22a2f85049413e5249e86768eb8b0d212aeb89990d83bbd",
-    // };
-    // const date = new Date();
-    // const data2 = {
-    //   name: gameData.gameName,
-    //   gameId: Number(gameData.gameId),
-    //   price: 50,
-    //   isTimed: true,
-    //   levels: 0,
-    //   currentTime: date.toISOString(),
-    //   played: false,
-    //   playTime: Number(timeInMins),
-    //   paymentId: "pay_R6QepYU4ehG0GM",
-    // };
-    // try {
-    //   const result = await axios.post(
-    //     `${Constants.baseUrl}/${Constants.orderDetails}`,
-    //     data
-    //   );
-
-    //   // this only runs if the above succeeds
-    //   const result2 = await axios.post(
-    //     `${Constants.baseUrl}/${Constants.gameStatus}`,
-    //     data2
-    //   );
-
-    //   console.log("Both succeeded:", result.data, result2.data);
-    // } catch (error) {
-    //   console.error("Error in first or second API:", error);
-    // }
 
     const options: any = {
       key: Constants.razorpay_keyId,
@@ -124,30 +88,35 @@ const Catalog = () => {
         const data2 = {
           name: gameData.gameName,
           gameId: Number(gameData.gameId),
-          price: 50,
+          price: gamePrice,
           isTimed: true,
           levels: 0,
           currentTime: date.toISOString(),
           played: false,
-          playTime: Number(timeInMins),
+          playTime: timeInMins,
           paymentId: response.razorpay_payment_id,
         };
 
-        const result = await axios.post(
+        await axios.post(
           `${Constants.baseUrl}/${Constants.orderDetails}`,
           data
         );
 
         // this only runs if the above succeeds
-        const result2 = await axios.post(
+        const result = await axios.post(
           `${Constants.baseUrl}/${Constants.gameStatus}`,
           data2
         );
 
-        console.log("data", result2);
+        const konami = {
+          gameName: gameData.gameName,
+          gameId: gameData.gameId,
+          konamiCode: result.data.code,
+        };
+        setKonamiCodes((prev) => [...prev, konami]);
       },
       theme: {
-        color: "#3399cc",
+        color: "#F37254",
       },
     };
 
