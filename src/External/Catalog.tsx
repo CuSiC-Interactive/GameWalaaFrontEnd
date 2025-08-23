@@ -7,23 +7,36 @@ import axios from "axios";
 import Constants from "../Shared/Constants";
 import { gamesModel } from "../Shared/Models";
 import { loadRazorpayScript } from "../Utils/loadRazorpayScript";
+// import logo from ".../dist/cusic-logo.png";
+
+type KonamiCode = {
+  gameName: string;
+  gameId: string;
+  konamiCode: string;
+};
 
 const Catalog = () => {
   const [Games, setGames] = useState<gamesModel[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [konamiCodes, setKonamiCodes] = useState([
-    { gameName: "Countra", gameId: "1", konamiCode: "asdfkh123" },
-  ]);
-
-  useEffect(() => {
-    setKonamiCodes([
-      { gameName: "Countra", gameId: "1", konamiCode: "asdfkh123" },
-    ]);
-  }, []);
+  const [konamiCodes, setKonamiCodes] = useState<KonamiCode[]>([]);
 
   useEffect(() => {
     fetchGames();
+
+    const savedCodes = localStorage.getItem("konamiCodes");
+    if (savedCodes) {
+      try {
+        const parsedCodes = JSON.parse(savedCodes);
+        if (Array.isArray(parsedCodes)) {
+          setKonamiCodes(parsedCodes);
+        }
+      } catch (error) {
+        console.error("Failed to parse konamiCodes from localStorage", error);
+      }
+    }
   }, []);
+
+  useEffect(() => {});
 
   const fetchGames = async () => {
     try {
@@ -50,34 +63,80 @@ const Catalog = () => {
   };
 
   const handleGamePayment = async (gameData: any) => {
+    const gamePrice = Number(gameData.selectedPrice.match(/₹\s*(\d+)/)[1]);
+    const timeInMins = Number(gameData.selectedPrice.match(/(\d+)\s*mins/)[1]);
+
     const isLoaded = await loadRazorpayScript();
     if (!isLoaded) {
       alert("Razorpay SDK failed to load.");
       return;
     }
 
+    const price = gamePrice * 100;
+    const result = await axios.get(
+      `${Constants.baseUrl}/${Constants.fetchOrder}/${price}`
+    );
+
+    const order_id: number = result.data.details.id;
+    const currency: string = result.data.details.currency;
+
     const options: any = {
-      key: "rzp_test_1DP5mmOlF5G5ag",
-      amount: 50000,
-      currency: "INR",
-      name: "Retro Arcade",
+      key: Constants.razorpay_keyId,
+      currency: currency,
+      name: Constants.razorpay_default,
+      order_id: order_id,
       description: `Payment for ${gameData.gameName}`,
-      image: "https://yourdomain.com/logo.png",
-      handler: function (response: any) {
-        alert("Payment Success! Payment ID: " + response.razorpay_payment_id);
-      },
-      prefill: {
-        name: "Anshul Sharma",
-        email: "test@example.com",
-        contact: "9999999999",
+      // image: logo,
+      handler: async (response: any) => {
+        const date = new Date();
+        const data = {
+          orderCreationId: order_id,
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpayOrderId: response.razorpay_order_id,
+          razorpaySignature: response.razorpay_signature,
+        };
+
+        const data2 = {
+          name: gameData.gameName,
+          gameId: Number(gameData.gameId),
+          price: gamePrice,
+          isTimed: true,
+          levels: 0,
+          currentTime: date.toISOString(),
+          played: false,
+          playTime: timeInMins,
+          paymentId: response.razorpay_payment_id,
+        };
+
+        await axios.post(
+          `${Constants.baseUrl}/${Constants.orderDetails}`,
+          data
+        );
+        setKonamiCodes([]);
+        // this only runs if the above succeeds
+        const result = await axios.post(
+          `${Constants.baseUrl}/${Constants.gameStatus}`,
+          data2
+        );
+
+        const konami = {
+          gameName: gameData.gameName,
+          gameId: gameData.gameId,
+          konamiCode: result.data.code,
+        };
+
+        setKonamiCodes((prev) => {
+          const updated = [...prev, konami];
+          localStorage.setItem("konamiCodes", JSON.stringify(updated));
+          return updated;
+        });
       },
       theme: {
-        color: "#3399cc",
+        color: "#F37254",
       },
     };
 
-    const paymentObject = new (window as any).Razorpay(options);
-    paymentObject.open();
+    new (window as any).Razorpay(options).open();
   };
 
   const handleOpenModal = () => {
@@ -91,26 +150,22 @@ const Catalog = () => {
   return (
     <div className="game-catalog-page">
       <div className="catalog-container">
-        {Games.map(
-          (
-            x // Use parentheses () or nothing instead of {}
-          ) => (
-            <div className="game-tile" key={x.GameId}>
-              <GameTile
-                gameId={x.GameId}
-                gameName={x.Name}
-                gameProfile={x.Thumbnail}
-                pricesList={normalizePrices(x.Price)}
-                infoMessage={
-                  x.Price.ByLevel
-                    ? "Prices are based on levels. Please select."
-                    : "Prices are based on time. Please select."
-                }
-                handleGamePayment={handleGamePayment}
-              />
-            </div>
-          )
-        )}
+        {Games.map((x) => (
+          <div className="game-tile" key={x.GameId}>
+            <GameTile
+              gameId={x.GameId}
+              gameName={x.Name}
+              gameProfile={x.Thumbnail}
+              pricesList={normalizePrices(x.Price)}
+              infoMessage={
+                x.Price.ByLevel
+                  ? "Prices are based on levels. Please select."
+                  : "Prices are based on time. Please select."
+              }
+              handleGamePayment={handleGamePayment}
+            />
+          </div>
+        ))}
       </div>
 
       <KonamiCodeModal

@@ -22,8 +22,8 @@ const ContactUs = () => {
           </div>
           <form
             className="contact-form"
-            // action="https://formspree.io/f/your-form-id"
-            // method="POST"
+            action="https://formspree.io/f/xrblqnwv"
+            method="POST"
           >
             <input
               type="text"
