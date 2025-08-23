@@ -7,7 +7,7 @@ import axios from "axios";
 import Constants from "../Shared/Constants";
 import { gamesModel } from "../Shared/Models";
 import { loadRazorpayScript } from "../Utils/loadRazorpayScript";
-// import logo from ".../dist/cusic-logo.png";
+import logo from "/cusic-logo.png";
 
 type KonamiCode = {
   gameName: string;
@@ -35,8 +35,6 @@ const Catalog = () => {
       }
     }
   }, []);
-
-  useEffect(() => {});
 
   const fetchGames = async () => {
     try {
@@ -86,7 +84,7 @@ const Catalog = () => {
       name: Constants.razorpay_default,
       order_id: order_id,
       description: `Payment for ${gameData.gameName}`,
-      // image: logo,
+      image: logo,
       handler: async (response: any) => {
         const date = new Date();
         const data = {
@@ -122,7 +120,7 @@ const Catalog = () => {
         const konami = {
           gameName: gameData.gameName,
           gameId: gameData.gameId,
-          konamiCode: result.data.code,
+          konamiCode: result.data.Code,
         };
 
         setKonamiCodes((prev) => {
@@ -132,7 +130,7 @@ const Catalog = () => {
         });
       },
       theme: {
-        color: "#F37254",
+        color: "#FDD226",
       },
     };
 

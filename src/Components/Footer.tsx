@@ -43,9 +43,13 @@ const Footer = () => {
       <Link to="/About">About</Link>
       <Link to="/terms-and-conditions">Terms & Conditions</Link>
       <Link to="/privacy-policy">Privacy Policy</Link>
-      <span className="chaiTreat" onClick={chaiTreat}>
-        Chai Treat
-      </span>
+      <a
+        className="chaiTreat"
+        href="https://buymeacoffee.com/arcadewali"
+        target="_blank"
+      >
+        Buy me a coffee!
+      </a>
     </footer>
   );
 };

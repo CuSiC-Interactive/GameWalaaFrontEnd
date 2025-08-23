@@ -1,6 +1,32 @@
 import "./ContactUs.css";
 
 const ContactUs = () => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xpwlvnlp", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        alert("Your message has been sent successfully! 🎉");
+        form.reset();
+      } else {
+        alert("Oops! Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Network error. Please try again later.");
+    }
+  };
+
   return (
     <>
       <section className="contact-section">
@@ -20,11 +46,7 @@ const ContactUs = () => {
               We’re just one message away from making it awesome.
             </p>
           </div>
-          <form
-            className="contact-form"
-            action="https://formspree.io/f/xrblqnwv"
-            method="POST"
-          >
+          <form className="contact-form" onSubmit={(e) => handleSubmit(e)}>
             <input
               type="text"
               name="name"
