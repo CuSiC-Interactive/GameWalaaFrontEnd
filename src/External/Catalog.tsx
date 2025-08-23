@@ -19,10 +19,21 @@ const Catalog = () => {
   const [Games, setGames] = useState<gamesModel[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [konamiCodes, setKonamiCodes] = useState<KonamiCode[]>([]);
-  const [paymentReponse, setPaymentReponse] = useState();
 
   useEffect(() => {
     fetchGames();
+
+    const savedCodes = localStorage.getItem("konamiCodes");
+    if (savedCodes) {
+      try {
+        const parsedCodes = JSON.parse(savedCodes);
+        if (Array.isArray(parsedCodes)) {
+          setKonamiCodes(parsedCodes);
+        }
+      } catch (error) {
+        console.error("Failed to parse konamiCodes from localStorage", error);
+      }
+    }
   }, []);
 
   useEffect(() => {});
@@ -101,7 +112,7 @@ const Catalog = () => {
           `${Constants.baseUrl}/${Constants.orderDetails}`,
           data
         );
-
+        setKonamiCodes([]);
         // this only runs if the above succeeds
         const result = await axios.post(
           `${Constants.baseUrl}/${Constants.gameStatus}`,
@@ -113,7 +124,12 @@ const Catalog = () => {
           gameId: gameData.gameId,
           konamiCode: result.data.code,
         };
-        setKonamiCodes((prev) => [...prev, konami]);
+
+        setKonamiCodes((prev) => {
+          const updated = [...prev, konami];
+          localStorage.setItem("konamiCodes", JSON.stringify(updated));
+          return updated;
+        });
       },
       theme: {
         color: "#F37254",
