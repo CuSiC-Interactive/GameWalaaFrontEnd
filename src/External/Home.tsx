@@ -1,6 +1,12 @@
 import "./Home.css";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const navigateToGames = () => {
+    navigate("/games");
+  };
   return (
     <>
       <div className="home-page-container">
@@ -16,14 +22,8 @@ const Home = () => {
           <p>Check out some of our most popular retro titles.</p>
           <div className="game-list">
             {/* Replace with your actual game list/components */}
-            <div className="game-item">
-              <span className="game-title">Pixel Runner</span>
-            </div>
-            <div className="game-item">
-              <span className="game-title">Space Invaders X</span>
-            </div>
-            <div className="game-item">
-              <span className="game-title">Block Breaker 9000</span>
+            <div className="game-item" onClick={navigateToGames}>
+              <span className="game-title">Bat Basher</span>
             </div>
           </div>
         </section>
