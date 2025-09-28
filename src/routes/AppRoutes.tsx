@@ -13,6 +13,7 @@ import RefundPolicy from "../External/PrivacyPolicy";
 import ContactUs from "../External/ContactUs";
 import { useEffect } from "react";
 import Games from "../External/Games";
+import Shop from "../External/shop/Shop";
 
 const AppRoutes = () => {
   const router = Router;
@@ -36,6 +37,7 @@ const AppRoutes = () => {
         <Route path="/privacy-policy" element={<RefundPolicy />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/games" element={<Games />} />
+        <Route path="/shop" element={<Shop/>}/>
       </Routes>
     </>
   );

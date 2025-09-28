@@ -1,0 +1,4 @@
+/* Main Shop Styles - Imports */
+@import './shop-layout.css';
+@import './product-card.css';
+@import './filters-modal.css';
