@@ -21,6 +21,13 @@ const Catalog = () => {
   const [konamiCodes, setKonamiCodes] = useState<KonamiCode[]>([]);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const arcadeId = params.get('arcade_id');
+
+    if (arcadeId) {
+      sessionStorage.setItem('arcade_id', arcadeId);
+    }
+
     fetchGames();
 
     const savedCodes = localStorage.getItem("konamiCodes");
@@ -39,11 +46,12 @@ const Catalog = () => {
   const fetchGames = async () => {
     try {
       const response = await axios.get(
-        `${Constants.baseUrl}/${Constants.games}`
+        `${Constants.baseUrl}/${Constants.games}/?arcadeId=${sessionStorage.getItem('arcade_id')}`
       );
       setGames(response.data.games);
     } catch (error) {}
   };
+
 
   const normalizePrices = (price: any) => {
     if (price.ByLevel) {
@@ -71,8 +79,20 @@ const Catalog = () => {
     }
 
     const price = gamePrice * 100;
+    if (!sessionStorage.getItem('arcade_id')) {
+      // alert("Arcade ID is missing. Please access the catalog through the arcade QR, or enter the arcade ID below to continue.");
+      // return;
+      // keep a modal instead of alert, an input box inside it to enter the id.
+      // as id is entered, save it to session storage and close the modal
+      // repopulate the games list with the new arcade id as well, check if selected game in the list, 
+      // if so let user proceed with payment, if not prompt him "Selected game is not available in this arcade".
+      // as we proceed for payment, pass the arcade id as query param in saveOrders API
+      // when api returns the valid orderId, proceed for the payment via rzrpay and pass arcadeId again in saveGameDetails api.
+      // that's it, api will invoke the service to pass the metadata of game to arcade via pub sub (MQTT).
+    }
+
     const result = await axios.get(
-      `${Constants.baseUrl}/${Constants.fetchOrder}/${price}`
+        `${Constants.baseUrl}/${Constants.fetchOrder}/${price}?arcadeId=${sessionStorage.getItem('arcade_id')}`
     );
 
     const order_id: number = result.data.details.id;
