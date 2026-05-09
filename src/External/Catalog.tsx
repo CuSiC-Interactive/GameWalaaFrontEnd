@@ -187,7 +187,7 @@ const Catalog = () => {
             razorpaySignature: response.razorpay_signature,
           },
           gameStatus:{
-            arcadeId: Number(sessionStorage.getItem('arcade_id')),
+            arcadeId: sessionStorage.getItem('arcade_id'),
             name: gameData.gameName,
             gameId: Number(gameData.gameId),
             price: gamePrice,
