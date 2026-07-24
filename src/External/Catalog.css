@@ -4,6 +4,19 @@
     justify-content: space-around;
 }
 
+.physical-arcade-info {
+    text-align: center;
+    font-size: 1rem;
+    margin: 7px;
+    background-color: #f8bc15b0;
+    border-radius: 20px;
+}
+
+.fa-exclamation-triangle {
+    margin-left: 0%;
+    margin-right: 1rem;
+}
+
 /* .game-tile {
     flex: 0 0 33.3333%
 } */
