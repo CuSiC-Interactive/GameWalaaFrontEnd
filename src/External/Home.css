@@ -103,7 +103,7 @@
   .game-embed-container {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1; /* matches the game's native 100x100 canvas */
     overflow: hidden;
     border-radius: 8px;
     border: 1px solid #555;
@@ -207,11 +207,6 @@
 
     .game-embed-title {
       font-size: 0.9em;
-    }
-
-    .game-embed-container {
-      aspect-ratio: auto; /* Let height control the size */
-      height: 380px;
     }
 
     .about-section {

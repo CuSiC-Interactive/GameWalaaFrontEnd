@@ -6776,7 +6776,7 @@ description = `
 characters = [];
 
 options = {
-  theme: "shape",
+  theme: "shapeDark",
   isPlayingBgm: true,
   isReplayEnabled: true,
   seed: 6,
@@ -6865,7 +6865,7 @@ function update() {
     } else {
       n.vel.set();
     }
-    color(n.color);
+    color(n.color === "blue" ? "yellow" : n.color);
     box(n.pos, 5);
     if (n.pos.y > 100 && n.color === "red") {
       play("explosion");
