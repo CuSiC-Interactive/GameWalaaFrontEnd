@@ -61,11 +61,12 @@
   
   .game-list {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 15px; /* Slightly reduce gap */
     margin-top: 15px; /* Reduce top margin */
   }
-  
+
   .game-item {
     background-color: rgba(0, 0, 0, 0.85);
     padding: 12px 18px; /* Slightly reduce padding */
@@ -74,13 +75,50 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     cursor: pointer;
   }
-  
+
   .game-title {
     font-size: 1em;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
     color: #eee;
   }
-  
+
+  /* Embedded Playable Game (Slice the Node) */
+  .game-embed-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 100%; /* own row inside .game-list */
+    width: 100%;
+    max-width: 600px;
+    margin: 10px auto 0;
+  }
+
+  .game-embed-title {
+    font-size: 1em;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+    color: #eee;
+  }
+
+  .game-embed-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4; /* rectangular frame; canvas is square and centers inside with margin */
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #555;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  }
+
+  .game-embed-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
   /* About GameWalaa Section */
   .about-section {
     margin-bottom: 20px; /* Reduce bottom margin */
@@ -162,7 +200,15 @@
     .game-title {
       font-size: 0.9em;
     }
-  
+
+    .game-embed-card {
+      max-width: 100%;
+    }
+
+    .game-embed-title {
+      font-size: 0.9em;
+    }
+
     .about-section {
       margin-bottom: 15px;
       padding-top: 10px;
