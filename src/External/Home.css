@@ -103,7 +103,7 @@
   .game-embed-container {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1; /* matches the game's native 100x100 canvas */
+    aspect-ratio: 3 / 4; /* rectangular frame; canvas is square and centers inside with margin */
     overflow: hidden;
     border-radius: 8px;
     border: 1px solid #555;
