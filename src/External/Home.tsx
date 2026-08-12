@@ -31,7 +31,7 @@ const Home = () => {
               <div className="game-embed-container">
                 <iframe
                   className="game-embed-frame"
-                  src="/games/slice-the-node/index.html"
+                  src="/assets/slice-the-node/index.html"
                   title="Slice the Node - playable game"
                   sandbox="allow-scripts allow-same-origin"
                   loading="lazy"
