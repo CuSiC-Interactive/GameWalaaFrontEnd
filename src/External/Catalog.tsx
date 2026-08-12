@@ -5,7 +5,13 @@ import KonamiCodeModal from "../Components/KonamiCodeModal";
 import "./Catalog.css";
 import axios from "axios";
 import Constants from "../Shared/Constants";
-import { gamesModel } from "../Shared/Models";
+import {
+  gamesModel,
+  GamePaymentData,
+  GamePrice,
+  PriceByLevel,
+  PriceByTime,
+} from "../Shared/Models";
 import { loadRazorpayScript } from "../Utils/loadRazorpayScript";
 import logo from "/cusic-logo.png";
 import Modal from "../Components/Modal";
@@ -60,19 +66,23 @@ const Catalog = () => {
       );
       setGames(response.data.games);
     }    
-    } catch (error) {}
+    } catch (error) {
+      // Previously swallowed silently, which left the catalog blank with no
+      // clue why. Surface it at least in the console.
+      console.error("Failed to fetch games catalogue", error);
+    }
   };
 
   // if that game is not there in the arcade list stop the payment
 
-  const normalizePrices = (price: any) => {
+  const normalizePrices = (price: GamePrice) => {
     if (price.ByLevel) {
-      return price.ByLevel.map((p: any) => ({
+      return price.ByLevel.map((p: PriceByLevel) => ({
         value: `${p.Level} Levels - ₹${p.Price}`,
         Based: "Level",
       }));
     } else if (price.ByTime) {
-      return price.ByTime.map((p: any) => ({
+      return price.ByTime.map((p: PriceByTime) => ({
         value: `${p.Time} mins - ₹${p.Price}`,
         Based: "Time",
       }));
@@ -88,9 +98,12 @@ const Catalog = () => {
       }
     }
 
-  const handleGamePayment = async (gameData: any) => {
-    const gamePrice = Number(gameData.selectedPrice.match(/₹\s*(\d+)/)[1]);
-    const timeInMins = Number(gameData.selectedPrice.match(/(\d+)\s*mins/)[1]);
+  const handleGamePayment = async (gameData: GamePaymentData) => {
+    // The `!` keeps the existing behaviour: if the label does not match, this
+    // throws rather than passing NaN on to the payment call. See note about
+    // level-based prices in normalizePrices.
+    const gamePrice = Number(gameData.selectedPrice.match(/₹\s*(\d+)/)![1]);
+    const timeInMins = Number(gameData.selectedPrice.match(/(\d+)\s*mins/)![1]);
 
     const arcadeId = sessionStorage.getItem('arcade_id');
 
@@ -113,7 +126,7 @@ const Catalog = () => {
     const order_id: number = result.data.details.id;
     const currency: string = result.data.details.currency;
 
-    const options: any = {
+    const options: RazorpayOptions = {
       key: Constants.razorpay_keyId,
       currency: currency,
       name: Constants.razorpay_default,
@@ -121,7 +134,7 @@ const Catalog = () => {
       description: `Payment for ${gameData.gameName}`,
       image: logo,
 
-      handler: async (response: any) => {
+      handler: async (response) => {
         const date = new Date();
         const data = {
           paymentDetails: {
@@ -155,7 +168,7 @@ const Catalog = () => {
       },
     };
 
-    new (window as any).Razorpay(options).open();
+    new window.Razorpay(options).open();
   };
 
   const handleOpenModal = () => {

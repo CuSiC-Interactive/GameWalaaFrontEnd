@@ -1,0 +1,58 @@
+name: CI
+
+# When this runs: on every pull request, and on anything pushed to main.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# This workflow only reads code. It cannot write to the repo or publish anything.
+permissions:
+  contents: read
+
+# If you push twice in quick succession, cancel the older run instead of
+# queueing both. Saves time and avoids confusing double results on a PR.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and type-check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc # keeps CI on the same Node as your Mac
+          cache: npm # reuses the npm cache between runs
+
+      # `npm ci` (not `npm install`) installs exactly what package-lock.json
+      # says and fails if the lockfile is out of sync. That strictness is what
+      # you want in CI.
+      - name: Install dependencies
+        run: npm ci
+
+      # Runs before the build because it is faster - you find out about style
+      # problems without waiting for a full Vite build.
+      - name: Lint
+        run: npm run lint
+
+      # The build script is `tsc -b && vite build`, so this type-checks first
+      # and fails before Vite ever runs. That is why there is no separate
+      # type-check step.
+      - name: Build
+        run: npm run build
+
+      # Lets you download the built site from any run to inspect what it
+      # produced. Purely for your own verification - this does not deploy.
+      - name: Save the build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7

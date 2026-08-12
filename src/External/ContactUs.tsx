@@ -1,10 +1,11 @@
+import type { FormEvent } from "react";
 import "./ContactUs.css";
 
 const ContactUs = () => {
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const form = e.target;
+    const form = e.currentTarget;
     const formData = new FormData(form);
 
     try {
@@ -22,7 +23,7 @@ const ContactUs = () => {
       } else {
         alert("Oops! Something went wrong. Please try again.");
       }
-    } catch (error) {
+    } catch {
       alert("Network error. Please try again later.");
     }
   };

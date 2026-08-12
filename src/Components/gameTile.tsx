@@ -2,6 +2,7 @@ import "./gameTile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
+import { GamePaymentData } from "../Shared/Models";
 
 export type GameTileProps = {
   gameName: string;
@@ -11,7 +12,7 @@ export type GameTileProps = {
   }[];
   infoMessage: string;
   gameId: number;
-  handleGamePayment: (gameData: any) => void;
+  handleGamePayment: (gameData: GamePaymentData) => void;
 };
 
 const GameTile = ({
@@ -22,7 +23,7 @@ const GameTile = ({
   gameId,
   handleGamePayment,
 }: GameTileProps) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<GamePaymentData>();
 
   return (
     <div className="game-cartridge">
