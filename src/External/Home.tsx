@@ -4,14 +4,14 @@ import { useRef } from "react";
 
 const Home = () => {
   const navigate = useNavigate();
-  const gameContainerRef = useRef<HTMLDivElement>(null);
+  const sliceRef = useRef<HTMLDivElement>(null);
+  const chaiRef = useRef<HTMLDivElement>(null);
 
   const navigateToGames = () => {
     navigate("/games");
   };
 
-  const toggleFullscreen = () => {
-    const el = gameContainerRef.current;
+  const toggleFullscreen = (el: HTMLDivElement | null) => {
     if (!el) return;
     if (document.fullscreenElement) {
       document.exitFullscreen?.();
@@ -19,6 +19,7 @@ const Home = () => {
       el.requestFullscreen?.();
     }
   };
+
   return (
     <>
       <div className="home-page-container">
@@ -39,8 +40,31 @@ const Home = () => {
             </div>
 
             <div className="game-embed-card">
+              <h3 className="game-embed-title">Slice the Node</h3>
+              <div className="game-embed-container" ref={sliceRef}>
+                <iframe
+                  className="game-embed-frame"
+                  src="/games/slice-the-node/index.html"
+                  title="Slice the Node - playable game"
+                  sandbox="allow-scripts allow-same-origin"
+                  loading="lazy"
+                  allowFullScreen
+                ></iframe>
+                <button
+                  type="button"
+                  className="game-embed-fullscreen"
+                  onClick={() => toggleFullscreen(sliceRef.current)}
+                  aria-label="Toggle fullscreen"
+                  title="Fullscreen"
+                >
+                  ⛶
+                </button>
+              </div>
+            </div>
+
+            <div className="game-embed-card">
               <h3 className="game-embed-title">Bring Your Own Chai</h3>
-              <div className="game-embed-container" ref={gameContainerRef}>
+              <div className="game-embed-container" ref={chaiRef}>
                 <iframe
                   className="game-embed-frame"
                   src="https://shadowbaby22.github.io/Bring-Your-Own-Chai/"
@@ -52,7 +76,7 @@ const Home = () => {
                 <button
                   type="button"
                   className="game-embed-fullscreen"
-                  onClick={toggleFullscreen}
+                  onClick={() => toggleFullscreen(chaiRef.current)}
                   aria-label="Toggle fullscreen"
                   title="Fullscreen"
                 >
