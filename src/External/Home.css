@@ -82,15 +82,24 @@
     color: #eee;
   }
 
-  /* Embedded Playable Game (Slice the Node) */
+  /* Embedded Playable Games — row sits on its own line inside .game-list */
+  .game-embed-row {
+    flex: 1 1 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 10px;
+  }
+
   .game-embed-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1 1 100%; /* own row inside .game-list */
-    width: 100%;
-    max-width: 600px;
-    margin: 10px auto 0;
+    flex: 1 1 320px; /* two per row on wider screens */
+    min-width: 0;
+    max-width: 460px;
   }
 
   .game-embed-title {
@@ -226,7 +235,12 @@
       font-size: 0.9em;
     }
 
+    .game-embed-row {
+      gap: 15px;
+    }
+
     .game-embed-card {
+      flex-basis: 100%;
       max-width: 100%;
     }
 

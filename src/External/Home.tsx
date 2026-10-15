@@ -39,49 +39,52 @@ const Home = () => {
               <span className="game-title">Bat Basher</span>
             </div>
 
-            <div className="game-embed-card">
-              <h3 className="game-embed-title">Slice the Node</h3>
-              <div className="game-embed-container" ref={sliceRef}>
-                <iframe
-                  className="game-embed-frame"
-                  src="/games/slice-the-node/index.html"
-                  title="Slice the Node - playable game"
-                  sandbox="allow-scripts allow-same-origin"
-                  loading="lazy"
-                  allowFullScreen
-                ></iframe>
-                <button
-                  type="button"
-                  className="game-embed-fullscreen"
-                  onClick={() => toggleFullscreen(sliceRef.current)}
-                  aria-label="Toggle fullscreen"
-                  title="Fullscreen"
-                >
-                  ⛶
-                </button>
+            {/* Playable embeds: side by side on desktop, stacked on mobile */}
+            <div className="game-embed-row">
+              <div className="game-embed-card">
+                <h3 className="game-embed-title">Slice the Node</h3>
+                <div className="game-embed-container" ref={sliceRef}>
+                  <iframe
+                    className="game-embed-frame"
+                    src="/games/slice-the-node/index.html"
+                    title="Slice the Node - playable game"
+                    sandbox="allow-scripts allow-same-origin"
+                    loading="lazy"
+                    allowFullScreen
+                  ></iframe>
+                  <button
+                    type="button"
+                    className="game-embed-fullscreen"
+                    onClick={() => toggleFullscreen(sliceRef.current)}
+                    aria-label="Toggle fullscreen"
+                    title="Fullscreen"
+                  >
+                    ⛶
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <div className="game-embed-card">
-              <h3 className="game-embed-title">Bring Your Own Chai</h3>
-              <div className="game-embed-container" ref={chaiRef}>
-                <iframe
-                  className="game-embed-frame"
-                  src="https://shadowbaby22.github.io/Bring-Your-Own-Chai/"
-                  title="Bring Your Own Chai - playable game"
-                  sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-                  loading="lazy"
-                  allowFullScreen
-                ></iframe>
-                <button
-                  type="button"
-                  className="game-embed-fullscreen"
-                  onClick={() => toggleFullscreen(chaiRef.current)}
-                  aria-label="Toggle fullscreen"
-                  title="Fullscreen"
-                >
-                  ⛶
-                </button>
+              <div className="game-embed-card">
+                <h3 className="game-embed-title">Bring Your Own Chai</h3>
+                <div className="game-embed-container" ref={chaiRef}>
+                  <iframe
+                    className="game-embed-frame"
+                    src="https://shadowbaby22.github.io/Bring-Your-Own-Chai/"
+                    title="Bring Your Own Chai - playable game"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                    loading="lazy"
+                    allowFullScreen
+                  ></iframe>
+                  <button
+                    type="button"
+                    className="game-embed-fullscreen"
+                    onClick={() => toggleFullscreen(chaiRef.current)}
+                    aria-label="Toggle fullscreen"
+                    title="Fullscreen"
+                  >
+                    ⛶
+                  </button>
+                </div>
               </div>
             </div>
           </div>
