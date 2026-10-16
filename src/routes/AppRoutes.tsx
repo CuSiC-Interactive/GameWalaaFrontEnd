@@ -11,8 +11,11 @@ import About from "../External/About";
 import TermsAndConditions from "../External/TermsAndConditons";
 import RefundPolicy from "../External/PrivacyPolicy";
 import ContactUs from "../External/ContactUs";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import Games from "../External/Games";
+
+// three.js is heavy; only load it when the game route is opened.
+const KeepieUppie = lazy(() => import("../External/KeepieUppie/KeepieUppie"));
 
 const AppRoutes = () => {
   const router = Router;
@@ -36,6 +39,11 @@ const AppRoutes = () => {
         <Route path="/privacy-policy" element={<RefundPolicy />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/games" element={<Games />} />
+        <Route path="/keepie-uppie" element={
+            <Suspense fallback={null}>
+              <KeepieUppie />
+            </Suspense>
+          } />
       </Routes>
     </>
   );

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Games.css";
 
 const Games = () => {
@@ -12,6 +13,9 @@ const Games = () => {
           allowFullScreen
         ></iframe>
       </div>
+      <Link to="/keepie-uppie" className="playLink">
+        ⚽ Play Keepie Uppie
+      </Link>
     </div>
   );
 };
